@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
 
-// Define backend URL directly
 const backendUrl = 'https://ecommerce-3ufe.onrender.com';
 
 const Login = () => {
