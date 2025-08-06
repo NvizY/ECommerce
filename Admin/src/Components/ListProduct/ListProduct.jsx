@@ -4,7 +4,8 @@ import { useState } from 'react'
 import { useEffect } from 'react';
 import cross_icon from '../../assets/cross_icon.png'
 
-const backendUrl = import.meta.env.VITE_BACKEND_URL;
+// Define backend URL directly
+const backendUrl = 'https://ecommerce-3ufe.onrender.com';
 
 const ListProduct = () => {
 

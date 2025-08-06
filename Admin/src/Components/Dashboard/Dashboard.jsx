@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './Dashboard.css';
 
+// Define backend URL directly
+const backendUrl = 'https://ecommerce-3ufe.onrender.com';
+
 const Dashboard = () => {
   const [stats, setStats] = useState({
     totalProducts: 0,
@@ -24,8 +27,8 @@ const Dashboard = () => {
   const fetchStats = async () => {
     try {
       const [productsResponse, usersResponse] = await Promise.all([
-        fetch('http://localhost:4000/allproducts'),
-        fetch('http://localhost:4000/allusers') // You'll need to create this endpoint
+        fetch(`${backendUrl}/allproducts`),
+        fetch(`${backendUrl}/allusers`) // You'll need to create this endpoint
       ]);
 
       if (productsResponse.ok) {

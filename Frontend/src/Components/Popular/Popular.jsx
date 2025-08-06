@@ -5,12 +5,15 @@ import Item from '../Item/Item'
 import { useState } from 'react'
 import { useEffect } from 'react'
 
+// Define backend URL directly
+const backendUrl = 'https://ecommerce-3ufe.onrender.com';
+
 const Popular = () => {
 
   const [popularProducts,setPopularProducts] = useState([]);
 
   useEffect(()=>{
-    fetch('http://localhost:4000/popularinwomen')
+    fetch(`${backendUrl}/popularinwomen`)
     .then((response)=>response.json())
     .then((data)=>setPopularProducts(data));
   },[])

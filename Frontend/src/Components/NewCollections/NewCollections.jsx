@@ -3,12 +3,15 @@ import './NewCollections.css'
 
 import Item from '../Item/Item'
 
+// Define backend URL directly
+const backendUrl = 'https://your-deployed-backend-url.com';
+
 const NewCollections = () => {
 
   const [new_collection,setNew_collection] = useState([]);
 
   useEffect(()=>{
-    fetch('http://localhost:4000/newcollections')
+    fetch(`${backendUrl}/newcollections`)
     .then((response)=>response.json())
     .then((data)=>setNew_collection(data));
   },[])

@@ -1,6 +1,9 @@
 import React, { createContext, useEffect, useState } from "react";
 import CartItems from "../Components/CartItems/CartItems";
 
+// Define backend URL directly
+const backendUrl = 'https://ecommerce-3ufe.onrender.com';
+
 export const ShopContext = createContext(null);
 const getDefaultCart = ()=>{
         let cart = {};
@@ -17,12 +20,12 @@ const ShopContextProvider = (props) => {
     const [cartItems,setCartItems] = useState(getDefaultCart());
 
     useEffect(()=>{
-        fetch('http://localhost:4000/allproducts')
+        fetch(`${backendUrl}/allproducts`)
         .then((response)=>response.json())
         .then((data)=>setAll_Product(data))
 
         if(localStorage.getItem('auth-token')){
-            fetch('http://localhost:4000/getcart',{
+            fetch(`${backendUrl}/getcart`,{
                 method: 'POST',
                 headers:{
                     Accept:'application/form-data',
@@ -40,7 +43,7 @@ const ShopContextProvider = (props) => {
     const addToCart = ((itemId)=>{
         setCartItems((prev)=>({...prev,[itemId]:prev[itemId]+1}));
         if(localStorage.getItem('auth-token')){
-            fetch('http://localhost:4000/addtocart',{
+            fetch(`${backendUrl}/addtocart`,{
                 method:'POST',
                 headers:{
                     Accept:'application/form-data',
@@ -58,7 +61,7 @@ const ShopContextProvider = (props) => {
     const removeFromCart = ((itemId)=>{
         setCartItems((prev)=>({...prev,[itemId]:prev[itemId]-1}))
         if(localStorage.getItem('auth-token')){
-            fetch('http://localhost:4000/removefromcart',{
+            fetch(`${backendUrl}/removefromcart`,{
                 method:'POST',
                 headers:{
                     Accept:'application/form-data',
@@ -68,12 +71,12 @@ const ShopContextProvider = (props) => {
                 body:JSON.stringify({"itemId":itemId}),
             })
             .then((response)=>response.json())
-            .then((data)=>console.log(data));
+            .then((data)=>console.log(data))
         }
     })
 
-    const getTotalCartAmount = () => {
-        let totalAmount=0;
+    const getTotalCartAmount = ()=>{
+        let totalAmount = 0;
         for(const item in cartItems)
         {
             if(cartItems[item]>0)
@@ -85,19 +88,20 @@ const ShopContextProvider = (props) => {
         return totalAmount;
     }
 
-    const getTotalCartItems = () =>{
+    const getTotalCartItems = ()=>{
         let totalItem = 0;
         for(const item in cartItems)
         {
-            if(CartItems[item]>0)
+            if(cartItems[item]>0)
             {
-                totalItem+= cartItems[item];
+                totalItem+=cartItems[item];
             }
         }
         return totalItem;
     }
 
-    const contextValue = {getTotalCartItems, getTotalCartAmount, all_product,cartItems,addToCart,removeFromCart};
+    const contextValue = {getTotalCartAmount,getTotalCartItems,all_product,cartItems,addToCart,removeFromCart};
+    
     return (
         <ShopContext.Provider value={contextValue}>
             {props.children}

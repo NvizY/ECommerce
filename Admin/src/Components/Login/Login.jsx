@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
 
-const backendUrl = import.meta.env.VITE_BACKEND_URL;
+// Define backend URL directly
+const backendUrl = 'https://ecommerce-3ufe.onrender.com';
 
 const Login = () => {
   const [formData, setFormData] = useState({
