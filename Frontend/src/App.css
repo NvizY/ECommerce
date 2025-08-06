@@ -1,0 +1,22 @@
+/* Add this to index.css or App.css */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Ensure all containers are responsive */
+.container, .wrapper, [class*="container"] {
+  width: 100%;
+  max-width: 100%;
+}
