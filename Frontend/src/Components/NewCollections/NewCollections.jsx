@@ -4,7 +4,7 @@ import './NewCollections.css'
 import Item from '../Item/Item'
 
 // Define backend URL directly
-const backendUrl = 'https://your-deployed-backend-url.com';
+const backendUrl = 'https://ecommerce-3ufe.onrender.com';
 
 const NewCollections = () => {
 
