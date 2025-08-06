@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 const Login = () => {
   const [formData, setFormData] = useState({
     email: '',
@@ -24,7 +26,7 @@ const Login = () => {
     setError('');
 
     try {
-      const response = await fetch('http://localhost:4000/admin/login', {
+      const response = await fetch(`${backendUrl}/admin/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

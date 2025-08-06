@@ -7,12 +7,24 @@ const multer = require("multer");
 const path = require("path");
 const cors = require("cors");
 const { log } = require("console");
+require("dotenv").config(); // Load environment variables from .env file
 
 app.use(express.json());
 app.use(cors());
 
+const URI = process.env.MONGODB_URI;
 // Database Connection With MongoDB
-mongoose.connect("mongodb+srv://nviz1:394520@cluster0.or41adm.mongodb.net/EComm");
+const connectToMongoDB = async () => {
+  try {
+    await mongoose.connect(URI);
+    console.log("Connected to MongoDB");
+  } catch (error) {
+    console.error("MongoDB connection error:", error);
+    process.exit(1); // Optional: exit the app if DB connection fails
+  }
+};
+
+connectToMongoDB(); 
 
 
 // API Creation
