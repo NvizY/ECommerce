@@ -22,7 +22,7 @@ const ListProduct = () => {
   },[])
 
   const remove_product = async (id)=>{
-    const adminToken = localStorage.getItem('admin-token');
+    const adminToken = localStorage.getItem('admin-auth-token');
     await fetch(`${backendUrl}/removeproduct`,{
       method:'POST',
       headers:{

@@ -50,7 +50,7 @@ const Dashboard = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('admin-token');
+    localStorage.removeItem('admin-auth-token');
     localStorage.removeItem('admin-data');
     window.location.href = '/admin/login';
   };
