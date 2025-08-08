@@ -43,7 +43,7 @@ const AddProduct = () => {
           product.image = responseData.image_url;
           console.log(product);
           
-          const adminToken = localStorage.getItem('admin-auth-token');
+          const adminToken = localStorage.getItem('admin-token');
           await fetch(`${backendUrl}/addproduct`,{
             method:'POST',
             headers:{

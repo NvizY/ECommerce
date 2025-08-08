@@ -37,7 +37,7 @@ const Login = () => {
       const data = await response.json();
 
       if (data.success) {
-        localStorage.setItem('admin-auth-token', data.token);
+        localStorage.setItem('admin-token', data.token);
         localStorage.setItem('admin-data', JSON.stringify(data.admin));
         navigate('/admin/dashboard');
       } else {

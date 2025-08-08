@@ -2,7 +2,7 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 
 const ProtectedRoute = ({ children }) => {
-  const adminToken = localStorage.getItem('admin-auth-token');
+  const adminToken = localStorage.getItem('admin-token');
   const adminData = localStorage.getItem('admin-data');
 
   if (!adminToken || !adminData) {
@@ -14,7 +14,7 @@ const ProtectedRoute = ({ children }) => {
     JSON.parse(adminData);
   } catch (error) {
     // If admin data is corrupted, clear it and redirect to login
-    localStorage.removeItem('admin-auth-token');
+    localStorage.removeItem('admin-token');
     localStorage.removeItem('admin-data');
     return <Navigate to="/admin/login" replace />;
   }
