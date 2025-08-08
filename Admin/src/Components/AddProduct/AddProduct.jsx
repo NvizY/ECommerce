@@ -44,7 +44,14 @@ const AddProduct = () => {
           console.log(product);
           
           const adminToken = localStorage.getItem('admin-token');
-          await fetch(`${backendUrl}/addproduct`,{
+          console.log('Admin Token:', adminToken); // Debug log
+          
+          if (!adminToken) {
+            alert('No admin token found. Please login again.');
+            return;
+          }
+          
+          const response = await fetch(`${backendUrl}/addproduct`,{
             method:'POST',
             headers:{
               Accept:'application/json',
@@ -52,9 +59,16 @@ const AddProduct = () => {
               'admin-auth-token': adminToken
             },
             body:JSON.stringify(product),
-          }).then((resp)=>resp.json()).then((data)=>{
-             data.success?alert("Product Added"):alert("Failed")
           });
+          
+          const data = await response.json();
+          console.log('Add Product Response:', data); // Debug log
+          
+          if (data.success) {
+            alert("Product Added");
+          } else {
+            alert("Failed: " + (data.errors || 'Unknown error'));
+          }
         }
       }
         catch (error) {
